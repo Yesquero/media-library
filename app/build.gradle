@@ -8,6 +8,10 @@ plugins {
 android {
     compileSdk 32
 
+    def Properties secretProps = new Properties()
+    def secretsFile = file('../local-secrets.properties')
+    secretProps.load(new FileInputStream(secretsFile))
+
     defaultConfig {
         applicationId "ru.mirea.medlib"
         minSdk 29
@@ -16,6 +20,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", 'KINOPOISK_API_KEY', secretProps['KINOPOSIK_API_KEY']
     }
 
     buildFeatures {

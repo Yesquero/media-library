@@ -17,5 +17,6 @@
     <fragment
         android:id="@+id/searchfragment"
         android:name="ru.mirea.medlib.view.Searchfragment"
-        android:label="Searchfragment" />
+        android:label="Searchfragment"
+        tools:layout="@layout/search_media_fragment"/>
 </navigation>

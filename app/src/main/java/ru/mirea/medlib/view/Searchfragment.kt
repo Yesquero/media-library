@@ -13,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import ru.mirea.medlib.R
 import ru.mirea.medlib.databinding.SearchMediaFragmentBinding
 import ru.mirea.medlib.network.ResultWrapper
+import ru.mirea.medlib.network.dto.asDomainModel
 import ru.mirea.medlib.view.adapter.SearchAdapter
 import ru.mirea.medlib.viewmodel.SearchViewModel
 import javax.inject.Inject
@@ -61,7 +62,7 @@ class Searchfragment : Fragment() {
         viewModel.searchResult.observe(viewLifecycleOwner) {
             when (it) {
                 is ResultWrapper.Success -> {
-                    adapter.submitList(it.data!!.films)
+                    adapter.submitList(it.data?.films?.asDomainModel())
                     binding.progressBar.visibility = View.GONE
                 }
                 is ResultWrapper.Error -> {

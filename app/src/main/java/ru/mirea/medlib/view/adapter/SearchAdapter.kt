@@ -7,12 +7,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.scopes.FragmentScoped
 import ru.mirea.medlib.databinding.SearchItemBinding
-import ru.mirea.medlib.network.dto.FilmSearchDto
+import ru.mirea.medlib.domain.FilmSearchResult
 import javax.inject.Inject
 
 @FragmentScoped
 class SearchAdapter @Inject constructor(val clickListener: ClickListener) :
-    ListAdapter<FilmSearchDto, SearchAdapter.ViewHolder>(RecipeListDiffCallback()) {
+    ListAdapter<FilmSearchResult, SearchAdapter.ViewHolder>(RecipeListDiffCallback()) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -29,7 +29,7 @@ class SearchAdapter @Inject constructor(val clickListener: ClickListener) :
 
     inner class ViewHolder(private val binding: SearchItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: FilmSearchDto, clickListener: ClickListener) {
+        fun bind(data: FilmSearchResult, clickListener: ClickListener) {
             binding.data = data
             binding.executePendingBindings()
             binding.clickListener = clickListener
@@ -38,20 +38,26 @@ class SearchAdapter @Inject constructor(val clickListener: ClickListener) :
 
     class ClickListener @Inject constructor() {
 
-        var onItemClick: ((FilmSearchDto) -> Unit)? = null
+        var onItemClick: ((FilmSearchResult) -> Unit)? = null
 
-        fun onClick(data: FilmSearchDto) {
+        fun onClick(data: FilmSearchResult) {
             onItemClick?.invoke(data)
         }
     }
 
-    class RecipeListDiffCallback : DiffUtil.ItemCallback<FilmSearchDto>() {
+    class RecipeListDiffCallback : DiffUtil.ItemCallback<FilmSearchResult>() {
 
-        override fun areItemsTheSame(oldItem: FilmSearchDto, newItem: FilmSearchDto): Boolean {
+        override fun areItemsTheSame(
+            oldItem: FilmSearchResult,
+            newItem: FilmSearchResult
+        ): Boolean {
             return oldItem.filmId == newItem.filmId
         }
 
-        override fun areContentsTheSame(oldItem: FilmSearchDto, newItem: FilmSearchDto): Boolean {
+        override fun areContentsTheSame(
+            oldItem: FilmSearchResult,
+            newItem: FilmSearchResult
+        ): Boolean {
             return oldItem == newItem
         }
 

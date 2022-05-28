@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:text="@{data.Companion.formattedGenres(data)}"
+                android:text="PLACEHOLDER TEXT"
                 android:textStyle="italic"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toBottomOf="@+id/twMediaName"

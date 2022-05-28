@@ -1,6 +1,7 @@
 package ru.mirea.medlib.network.dto
 
 import com.squareup.moshi.JsonClass
+import ru.mirea.medlib.domain.FilmSearchResult
 
 @JsonClass(generateAdapter = true)
 data class FilmSearchResponse(
@@ -25,11 +26,18 @@ data class FilmSearchDto(
     val ratingVoteCount: Long,
     val posterUrl: String,
     val posterUrlPreview: String,
-) {
-    companion object {
-        fun formattedGenres(filmSearchDto: FilmSearchDto): String {
-            return filmSearchDto.genres.joinToString(", ")
-        }
+)
+
+fun List<FilmSearchDto>.asDomainModel(): List<FilmSearchResult> {
+    return map {
+        FilmSearchResult(
+            filmId = it.filmId,
+            nameRu = it.nameRu,
+            nameEn = it.nameEn,
+            genres = it.genres,
+            posterUrlPreview = it.posterUrlPreview,
+            rating = it.rating
+        )
     }
 }
 

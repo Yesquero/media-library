@@ -1,6 +1,6 @@
 package ru.mirea.medlib.network.dto
 
-data class FilmSearchResponse(
+data class FilmSearchDto(
     val filmId: Long,
     val nameRu: String,
     val nameEn: String,

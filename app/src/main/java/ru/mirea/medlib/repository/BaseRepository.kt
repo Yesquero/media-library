@@ -4,7 +4,7 @@ import android.util.Log
 import retrofit2.Response
 import ru.mirea.medlib.network.ResultWrapper
 
-class BaseRepository(protected val TAG: String) {
+open class BaseRepository(protected val TAG: String) {
 
     protected suspend fun <T> safeApiCall(call: suspend () -> Response<T>): ResultWrapper<T> {
         try {

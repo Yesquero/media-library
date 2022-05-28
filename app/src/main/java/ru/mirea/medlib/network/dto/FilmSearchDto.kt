@@ -1,5 +1,12 @@
 package ru.mirea.medlib.network.dto
 
+data class FilmSearchResponse(
+    val keyword: String?,
+    val pagesCount: Int,
+    val searchFilmsCountResult: Int,
+    val films: List<FilmSearchDto>
+)
+
 data class FilmSearchDto(
     val filmId: Long,
     val nameRu: String,
@@ -14,7 +21,13 @@ data class FilmSearchDto(
     val ratingVoteCount: Long,
     val posterUrl: String,
     val posterUrlPreview: String,
-)
+) {
+    companion object {
+        fun formattedGenres(filmSearchDto: FilmSearchDto): String {
+            return filmSearchDto.genres.joinToString(", ")
+        }
+    }
+}
 
 data class Country(
     val country: String,

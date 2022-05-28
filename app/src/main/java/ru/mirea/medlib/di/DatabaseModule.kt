@@ -22,7 +22,7 @@ object DatabaseModule {
             appContext,
             MedLibDatabase::class.java,
             "MedLibDB"
-        ).fallbackToDestructiveMigration().build()
+        ).build()
     }
 
     @Provides

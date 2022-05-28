@@ -85,6 +85,7 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-paging:2.5.0-alpha01"
+    kapt "androidx.room:room-compiler:$room_version"
 
     /// navigation
     implementation "androidx.navigation:navigation-fragment:$nav_version"

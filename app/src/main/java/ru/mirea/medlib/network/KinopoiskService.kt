@@ -3,7 +3,7 @@ package ru.mirea.medlib.network
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
-import ru.mirea.medlib.network.dto.FilmSearchDto
+import ru.mirea.medlib.network.dto.FilmSearchResponse
 
 interface KinopoiskService {
 
@@ -11,5 +11,5 @@ interface KinopoiskService {
     suspend fun searchByKeyword(
         @Query("keyword") keyword: String,
         @Query("page") pages: Int
-    ): Response<List<FilmSearchDto>>
+    ): Response<FilmSearchResponse>
 }

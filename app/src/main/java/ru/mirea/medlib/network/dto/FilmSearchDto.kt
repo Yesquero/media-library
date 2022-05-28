@@ -1,6 +1,8 @@
 package ru.mirea.medlib.network.dto
 
+import android.os.Parcelable
 import com.squareup.moshi.JsonClass
+import kotlinx.parcelize.Parcelize
 import ru.mirea.medlib.domain.FilmSearchResult
 
 @JsonClass(generateAdapter = true)
@@ -41,13 +43,15 @@ fun List<FilmSearchDto>.asDomainModel(): List<FilmSearchResult> {
     }
 }
 
+@Parcelize
 @JsonClass(generateAdapter = true)
 data class Country(
     val country: String,
-)
+) : Parcelable
 
+@Parcelize
 @JsonClass(generateAdapter = true)
 data class Genre(
     val genre: String,
-)
+) : Parcelable
 

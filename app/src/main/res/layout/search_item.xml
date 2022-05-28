@@ -9,6 +9,8 @@
             name="data"
             type="ru.mirea.medlib.domain.FilmSearchResult" />
 
+        <import type="ru.mirea.medlib.utility.Formatters" />
+
         <variable
             name="clickListener"
             type="ru.mirea.medlib.view.adapter.SearchAdapter.ClickListener" />
@@ -19,7 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp">
+        android:layout_marginRight="8dp"
+        android:onClick="@{() -> clickListener.onClick(data)}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -58,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:text="@{data.Companion.formattedGenres(data)}"
+                android:text="@{Formatters.INSTANCE.formattedGenres(data.genres)}"
                 android:textStyle="italic"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toBottomOf="@+id/twMediaName"

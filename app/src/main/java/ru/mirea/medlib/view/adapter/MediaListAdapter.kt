@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.scopes.FragmentScoped
 import ru.mirea.medlib.databinding.MediaItemBinding
-import ru.mirea.medlib.network.dto.FilmSearchDto
+import ru.mirea.medlib.domain.MediaDetails
 import javax.inject.Inject
 
 
 @FragmentScoped
 class MediaListAdapter @Inject constructor(val clickListener: ClickListener) :
-    ListAdapter<FilmSearchDto, MediaListAdapter.ViewHolder>(RecipeListDiffCallback()) {
+    ListAdapter<MediaDetails, MediaListAdapter.ViewHolder>(RecipeListDiffCallback()) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -30,7 +30,7 @@ class MediaListAdapter @Inject constructor(val clickListener: ClickListener) :
 
     inner class ViewHolder(private val binding: MediaItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: FilmSearchDto, clickListener: ClickListener) {
+        fun bind(data: MediaDetails, clickListener: ClickListener) {
             binding.data = data
             binding.executePendingBindings()
             binding.clickListener = clickListener
@@ -39,20 +39,20 @@ class MediaListAdapter @Inject constructor(val clickListener: ClickListener) :
 
     class ClickListener @Inject constructor() {
 
-        var onItemClick: ((FilmSearchDto) -> Unit)? = null
+        var onItemClick: ((MediaDetails) -> Unit)? = null
 
-        fun onClick(data: FilmSearchDto) {
+        fun onClick(data: MediaDetails) {
             onItemClick?.invoke(data)
         }
     }
 
-    class RecipeListDiffCallback : DiffUtil.ItemCallback<FilmSearchDto>() {
+    class RecipeListDiffCallback : DiffUtil.ItemCallback<MediaDetails>() {
 
-        override fun areItemsTheSame(oldItem: FilmSearchDto, newItem: FilmSearchDto): Boolean {
-            return oldItem.filmId == newItem.filmId
+        override fun areItemsTheSame(oldItem: MediaDetails, newItem: MediaDetails): Boolean {
+            return oldItem.kinopoiskId == newItem.kinopoiskId
         }
 
-        override fun areContentsTheSame(oldItem: FilmSearchDto, newItem: FilmSearchDto): Boolean {
+        override fun areContentsTheSame(oldItem: MediaDetails, newItem: MediaDetails): Boolean {
             return oldItem == newItem
         }
 

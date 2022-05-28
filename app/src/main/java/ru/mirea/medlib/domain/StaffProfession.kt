@@ -1,0 +1,5 @@
+package ru.mirea.medlib.domain
+
+enum class StaffProfession {
+    WRITER, OPERATOR, EDITOR, COMPOSER, PRODUCER_USSR, TRANSLATOR, DIRECTOR, DESIGN, PRODUCER, ACTOR, VOICE_DIRECTOR, UNKNOWN
+}

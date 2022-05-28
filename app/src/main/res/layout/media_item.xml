@@ -5,9 +5,11 @@
 
     <data>
 
+        <import type="ru.mirea.medlib.utility.Formatters" />
+
         <variable
             name="data"
-            type="ru.mirea.medlib.network.dto.FilmSearchDto" />
+            type="ru.mirea.medlib.domain.MediaDetails" />
 
         <variable
             name="clickListener"
@@ -15,8 +17,6 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        layout_height=""
-        layout_width=""
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -38,7 +38,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/preview_placeholder" />
+                imageUrl="@{data.posterUrlPreview}" />
 
             <TextView
                 android:id="@+id/twMediaName"
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:text="@{data.nameRu}"
+                android:text="@{data.nameRu ?? data.nameEn ?? data.nameOriginal}"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:text="PLACEHOLDER TEXT"
+                android:text="@{Formatters.INSTANCE.formattedGenres(data.genres)}"
                 android:textStyle="italic"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toBottomOf="@+id/twMediaName"

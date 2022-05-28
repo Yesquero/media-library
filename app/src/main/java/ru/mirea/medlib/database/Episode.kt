@@ -9,7 +9,7 @@ data class Episode(
     @PrimaryKey(autoGenerate = true)
     val episodeId: Long,
     // owning film
-    val fkFilmId: Long,
+    var fkFilmId: Long,
     val seasonNumber: Long,
     val episodeNumber: Long,
     val nameRu: String?,
@@ -29,3 +29,5 @@ fun Episode.asDomainModel(): EpisodeDetails {
         releaseDate = releaseDate
     )
 }
+
+fun List<Episode>.asDomainModel(): List<EpisodeDetails> = map { it.asDomainModel() }

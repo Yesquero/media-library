@@ -49,6 +49,10 @@ class MediaListFragment : Fragment() {
                 .navigate(R.id.action_mediaListFragment_to_searchfragment)
         }
 
+        viewModel.mediaList.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
+
     }
 
     override fun onDestroy() {

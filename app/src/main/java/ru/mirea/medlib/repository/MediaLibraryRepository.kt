@@ -11,7 +11,9 @@ import ru.mirea.medlib.database.asDomainModel
 import ru.mirea.medlib.domain.MediaDetails
 import ru.mirea.medlib.network.KinopoiskService
 import ru.mirea.medlib.network.ResultWrapper
+import ru.mirea.medlib.network.dto.FilmDetailsDto
 import ru.mirea.medlib.network.dto.FilmSearchResponse
+import ru.mirea.medlib.network.dto.asDatabaseModel
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -22,10 +24,8 @@ class MediaLibraryRepository @Inject constructor(
 ) : BaseRepository("MedialLibraryRepository") {
 
     val library: LiveData<List<MediaDetails>> =
-        Transformations.map(database.mediaEntityDao.getAllWithEpisode()) { list ->
-            list.map { it ->
-                it.asDomainModel()
-            }
+        Transformations.map(database.mediaEntityDao.getAllWithEpisode()) {
+            it.asDomainModel()
         }
 
     suspend fun keywordSearch(keyword: String): Flow<ResultWrapper<FilmSearchResponse>> {
@@ -33,5 +33,20 @@ class MediaLibraryRepository @Inject constructor(
             emit(ResultWrapper.Loading())
             emit(safeApiCall { kinopoiskService.searchByKeyword(keyword, 1) })
         }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getDetails(id: Long): Flow<ResultWrapper<FilmDetailsDto>> {
+        return flow {
+            emit(ResultWrapper.Loading())
+            emit(safeApiCall { kinopoiskService.getDetails(id) })
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun addMedia(filmDetailsDto: FilmDetailsDto) {
+        if (filmDetailsDto.serial) {
+            TODO("Load episodes and save, also figure out how to change ui")
+        } else {
+            database.mediaEntityDao.insert(filmDetailsDto.asDatabaseModel())
+        }
     }
 }

@@ -16,7 +16,19 @@
     </fragment>
     <fragment
         android:id="@+id/searchfragment"
-        android:name="ru.mirea.medlib.view.Searchfragment"
+        android:name="ru.mirea.medlib.view.SearchFragment"
         android:label="Searchfragment"
-        tools:layout="@layout/search_media_fragment"/>
+        tools:layout="@layout/search_media_fragment">
+        <action
+            android:id="@+id/action_searchfragment_to_addMediaFragment"
+            app:destination="@id/addMediaFragment"
+
+            app:popUpTo="@id/searchfragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/addMediaFragment"
+        android:name="ru.mirea.medlib.view.AddMediaFragment"
+        android:label="AddMediaFragment"
+        tools:layout="@layout/add_media_fragment" />
 </navigation>

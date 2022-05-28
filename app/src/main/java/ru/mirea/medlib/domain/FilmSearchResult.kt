@@ -1,7 +1,10 @@
 package ru.mirea.medlib.domain
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import ru.mirea.medlib.network.dto.Genre
 
+@Parcelize
 data class FilmSearchResult(
     val filmId: Long,
     val nameRu: String?,
@@ -9,10 +12,4 @@ data class FilmSearchResult(
     val genres: List<Genre>,
     val rating: String?,
     val posterUrlPreview: String,
-) {
-    companion object {
-        fun formattedGenres(filmSearchResult: FilmSearchResult): String {
-            return filmSearchResult.genres.joinToString(", ") { it -> it.genre }
-        }
-    }
-}
+) : Parcelable

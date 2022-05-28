@@ -1,7 +1,9 @@
 package ru.mirea.medlib.network.dto
 
+import com.squareup.moshi.JsonClass
 import ru.mirea.medlib.domain.FilmCategory
 
+@JsonClass(generateAdapter = true)
 data class FilmDetailsDto(
     val kinopoiskId: Long,
     val imdbId: String,

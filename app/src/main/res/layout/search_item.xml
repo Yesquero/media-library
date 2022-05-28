@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="data"
             type="ru.mirea.medlib.network.dto.FilmSearchDto" />
@@ -14,8 +15,6 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        layout_height=""
-        layout_width=""
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -28,17 +27,17 @@
 
             <ImageView
                 android:id="@+id/imageView"
+                imageUrl="@{data.posterUrlPreview}"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:scaleType="fitXY"
-                imageUrl="@{data.posterUrlPreview}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/film_preview" />
+                tools:srcCompat="@drawable/preview_placeholder" />
 
             <TextView
                 android:id="@+id/twMediaName"
@@ -46,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:text="@{data.nameRu}"
+                android:text="@{data.nameRu ?? data.nameEn}"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/imageView"

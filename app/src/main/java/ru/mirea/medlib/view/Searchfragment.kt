@@ -39,6 +39,7 @@ class Searchfragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         binding.searchList.adapter = adapter
+        binding.progressBar.visibility = View.GONE
 
         binding.mediaSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="data"
             type="ru.mirea.medlib.network.dto.FilmSearchDto" />
@@ -37,7 +38,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/film_preview" />
+                tools:srcCompat="@drawable/preview_placeholder" />
 
             <TextView
                 android:id="@+id/twMediaName"

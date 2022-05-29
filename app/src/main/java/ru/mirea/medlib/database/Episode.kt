@@ -1,15 +1,26 @@
 package ru.mirea.medlib.database
 
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import ru.mirea.medlib.domain.EpisodeDetails
 
-@Entity(tableName = "episode")
+@Entity(
+    tableName = "episode",
+    foreignKeys = [
+        ForeignKey(
+            entity = MediaEntity::class,
+            parentColumns = ["kinopoiskId"],
+            childColumns = ["fkFilmId"],
+            onDelete = ForeignKey.CASCADE
+        )
+    ]
+)
 data class Episode(
     @PrimaryKey(autoGenerate = true)
-    val episodeId: Long,
+    var episodeId: Long = 0,
     // owning film
-    var fkFilmId: Long,
+    var fkFilmId: Long = 0,
     val seasonNumber: Long,
     val episodeNumber: Long,
     val nameRu: String?,

@@ -67,6 +67,22 @@ class AddMediaFragment : Fragment() {
                 }
             }
         }
+
+        viewModel.addMediaResult.observe(viewLifecycleOwner) {
+            when (it) {
+                is ResultWrapper.Loading -> {
+                }
+                is ResultWrapper.Error -> {
+                    // TODO: navigate back ?
+                    Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
+                }
+                is ResultWrapper.Success -> {
+                    // TODO: navigate back ?
+                    Toast.makeText(context, R.string.save_success, Toast.LENGTH_SHORT).show()
+                    binding.saveBtn.visibility = View.VISIBLE
+                }
+            }
+        }
     }
 
     override fun onDestroy() {

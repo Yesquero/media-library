@@ -13,6 +13,7 @@ import ru.mirea.medlib.network.KinopoiskService
 import ru.mirea.medlib.network.ResultWrapper
 import ru.mirea.medlib.network.dto.FilmDetailsDto
 import ru.mirea.medlib.network.dto.FilmSearchResponse
+import ru.mirea.medlib.network.dto.allEpisodes
 import ru.mirea.medlib.network.dto.asDatabaseModel
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -42,11 +43,28 @@ class MediaLibraryRepository @Inject constructor(
         }.flowOn(Dispatchers.IO)
     }
 
-    fun saveMedia(filmDetailsDto: FilmDetailsDto) {
-        if (filmDetailsDto.serial) {
-            TODO("Load episodes and save, also figure out how to change ui")
-        } else {
-            database.mediaEntityDao.insert(filmDetailsDto.asDatabaseModel())
-        }
+    suspend fun saveMedia(dto: FilmDetailsDto): Flow<ResultWrapper<Unit>> {
+        return flow<ResultWrapper<Unit>> {
+            emit(ResultWrapper.Loading())
+            if (dto.serial) {
+                val response = safeApiCall { kinopoiskService.getSeasonDetails(dto.kinopoiskId) }
+                if (response.isSuccessful()) {
+                    database.mediaEntityDao.insert(
+                        dto.asDatabaseModel(),
+                        response.data!!.items.allEpisodes().asDatabaseModel()
+                    )
+                    emit(ResultWrapper.Success(Unit))
+                } else {
+                    emit(ResultWrapper.Error(response.message!!))
+                }
+            } else {
+                database.mediaEntityDao.insert(dto.asDatabaseModel())
+                emit(ResultWrapper.Success(Unit))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    fun deleteMedia(id: Long) {
+        database.mediaEntityDao.deleteMediaEntity(id)
     }
 }

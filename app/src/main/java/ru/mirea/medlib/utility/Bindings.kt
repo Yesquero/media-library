@@ -14,6 +14,7 @@ fun loadImage(view: ImageView, url: String?) {
         Glide.with(view.context)
             .load(url)
             .placeholder(R.drawable.preview_placeholder)
+            .fallback(R.drawable.preview_placeholder)
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(view)
     }

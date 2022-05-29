@@ -20,7 +20,7 @@
 
         <ImageView
             android:id="@+id/posterImage"
-            imageUrl="@{data.coverUrl ?? ``}"
+            imageUrl="@{data.posterUrl}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"

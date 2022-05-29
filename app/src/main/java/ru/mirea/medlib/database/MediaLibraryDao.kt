@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
-interface MediaEntityDao {
+interface MediaLibraryDao {
 
     // CREATE
     @Insert(onConflict = OnConflictStrategy.REPLACE)

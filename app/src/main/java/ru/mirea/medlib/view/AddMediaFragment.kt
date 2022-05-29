@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
 import ru.mirea.medlib.R
 import ru.mirea.medlib.databinding.AddMediaFragmentBinding
@@ -80,6 +81,7 @@ class AddMediaFragment : Fragment() {
                     // TODO: navigate back ?
                     Toast.makeText(context, R.string.save_success, Toast.LENGTH_SHORT).show()
                     binding.saveBtn.visibility = View.VISIBLE
+                    Navigation.findNavController(view).popBackStack()
                 }
             }
         }

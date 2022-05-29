@@ -23,7 +23,7 @@
             android:id="@+id/action_searchfragment_to_addMediaFragment"
             app:destination="@id/addMediaFragment"
 
-            app:popUpTo="@id/searchfragment"
+            app:popUpTo="@id/mediaListFragment"
             app:popUpToInclusive="false" />
     </fragment>
     <fragment

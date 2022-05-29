@@ -26,7 +26,7 @@ data class Episode(
     val nameRu: String?,
     val nameEn: String?,
     val synopsis: String?,
-    val releaseDate: String,
+    val releaseDate: String?,
 )
 
 fun Episode.asDomainModel(): EpisodeDetails {

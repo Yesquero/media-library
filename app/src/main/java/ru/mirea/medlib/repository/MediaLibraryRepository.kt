@@ -25,7 +25,7 @@ class MediaLibraryRepository @Inject constructor(
 ) : BaseRepository("MedialLibraryRepository") {
 
     val library: LiveData<List<MediaDetails>> =
-        Transformations.map(database.mediaEntityDao.getAllWithEpisode()) {
+        Transformations.map(database.mediaLibraryDao.getAllWithEpisode()) {
             it.asDomainModel()
         }
 
@@ -49,7 +49,7 @@ class MediaLibraryRepository @Inject constructor(
             if (dto.serial) {
                 val response = safeApiCall { kinopoiskService.getSeasonDetails(dto.kinopoiskId) }
                 if (response.isSuccessful()) {
-                    database.mediaEntityDao.insert(
+                    database.mediaLibraryDao.insert(
                         dto.asDatabaseModel(),
                         response.data!!.items.allEpisodes().asDatabaseModel()
                     )
@@ -58,13 +58,13 @@ class MediaLibraryRepository @Inject constructor(
                     emit(ResultWrapper.Error(response.message!!))
                 }
             } else {
-                database.mediaEntityDao.insert(dto.asDatabaseModel())
+                database.mediaLibraryDao.insert(dto.asDatabaseModel())
                 emit(ResultWrapper.Success(Unit))
             }
         }.flowOn(Dispatchers.IO)
     }
 
     fun deleteMedia(id: Long) {
-        database.mediaEntityDao.deleteMediaEntity(id)
+        database.mediaLibraryDao.deleteMediaEntity(id)
     }
 }

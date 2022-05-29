@@ -8,7 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import ru.mirea.medlib.database.MedLibDatabase
-import ru.mirea.medlib.database.MediaEntityDao
+import ru.mirea.medlib.database.MediaLibraryDao
 import javax.inject.Singleton
 
 @Module
@@ -26,7 +26,7 @@ object DatabaseModule {
     }
 
     @Provides
-    fun provideMediaEntityDao(medLibDatabase: MedLibDatabase): MediaEntityDao {
-        return medLibDatabase.mediaEntityDao
+    fun provideMediaEntityDao(medLibDatabase: MedLibDatabase): MediaLibraryDao {
+        return medLibDatabase.mediaLibraryDao
     }
 }

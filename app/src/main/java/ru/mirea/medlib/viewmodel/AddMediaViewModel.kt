@@ -32,7 +32,7 @@ class AddMediaViewModel @Inject constructor(
 
     fun saveMedia() {
         viewModelScope.launch(Dispatchers.IO) {
-            _detailsDtoResult.value?.data?.let { mediaLibraryRepository.addMedia(it) }
+            _detailsDtoResult.value?.data?.let { mediaLibraryRepository.saveMedia(it) }
         }
     }
 }

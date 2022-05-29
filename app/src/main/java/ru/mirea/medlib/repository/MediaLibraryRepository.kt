@@ -42,7 +42,7 @@ class MediaLibraryRepository @Inject constructor(
         }.flowOn(Dispatchers.IO)
     }
 
-    fun addMedia(filmDetailsDto: FilmDetailsDto) {
+    fun saveMedia(filmDetailsDto: FilmDetailsDto) {
         if (filmDetailsDto.serial) {
             TODO("Load episodes and save, also figure out how to change ui")
         } else {

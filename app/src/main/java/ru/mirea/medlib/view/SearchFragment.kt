@@ -43,7 +43,6 @@ class SearchFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         binding.searchList.adapter = adapter
-        binding.progressBar.visibility = View.GONE
 
         binding.mediaSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
@@ -72,15 +71,11 @@ class SearchFragment : Fragment() {
             when (it) {
                 is ResultWrapper.Success -> {
                     adapter.submitList(it.data?.films?.asDomainModel())
-                    binding.progressBar.visibility = View.GONE
                 }
                 is ResultWrapper.Error -> {
                     Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
-                    binding.progressBar.visibility = View.GONE
                 }
                 is ResultWrapper.Loading -> {
-                    // show progress
-                    binding.progressBar.visibility = View.VISIBLE
                 }
             }
         }

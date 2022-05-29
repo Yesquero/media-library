@@ -8,6 +8,10 @@
         <variable
             name="data"
             type="ru.mirea.medlib.network.dto.FilmDetailsDto" />
+
+        <variable
+            name="viewModel"
+            type="ru.mirea.medlib.viewmodel.AddMediaViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,6 +48,7 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="@{viewModel.detailsDtoResult.loading}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

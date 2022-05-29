@@ -33,7 +33,8 @@ class AddMediaFragment : Fragment() {
             inflater, R.layout.add_media_fragment, container, false
         )
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.loadDetailsBar.visibility = View.GONE
+        binding.viewModel = viewModel
+
         binding.saveBtn.visibility = View.GONE
 
         // initialize
@@ -55,16 +56,13 @@ class AddMediaFragment : Fragment() {
         viewModel.detailsDtoResult.observe(viewLifecycleOwner) {
             when (it) {
                 is ResultWrapper.Loading -> {
-                    binding.loadDetailsBar.visibility = View.VISIBLE
                 }
                 is ResultWrapper.Error -> {
                     // TODO: navigate back ?
-                    binding.loadDetailsBar.visibility = View.GONE
                     Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
                 }
                 is ResultWrapper.Success -> {
                     binding.data = it.data
-                    binding.loadDetailsBar.visibility = View.GONE
                     binding.saveBtn.visibility = View.VISIBLE
                 }
             }

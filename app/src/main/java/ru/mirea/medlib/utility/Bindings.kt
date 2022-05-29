@@ -1,6 +1,8 @@
 package ru.mirea.medlib.utility
 
+import android.view.View
 import android.widget.ImageView
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -15,4 +17,9 @@ fun loadImage(view: ImageView, url: String?) {
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(view)
     }
+}
+
+@BindingAdapter("android:visibility")
+fun View.bindVisibility(visible: Boolean) {
+    isVisible = visible == true
 }

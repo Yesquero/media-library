@@ -44,7 +44,7 @@ data class MediaEntityWithEpisode(
     @Embedded val mediaEntity: MediaEntity,
     @Relation(
         parentColumn = "kinopoiskId",
-        entityColumn = "fkFilmId"
+        entityColumn = "film_id"
     )
     val episodes: List<Episode>
 )

@@ -4,12 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
-interface MediaEntityDao {
+interface MediaLibraryDao {
 
-    @Transaction
-    @Query("SELECT * FROM media_entity")
-    fun getAllWithEpisode(): LiveData<List<MediaEntityWithEpisode>>
-
+    // CREATE
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(mediaEntity: MediaEntity): Long
 
@@ -25,4 +22,18 @@ interface MediaEntityDao {
             insert(it)
         }
     }
+
+    // READ
+
+    @Transaction
+    @Query("SELECT * FROM media_entity")
+    fun getAllWithEpisode(): LiveData<List<MediaEntityWithEpisode>>
+
+    // UPDATE
+
+    // DELETE
+
+    @Query("DELETE FROM media_entity WHERE kinopoiskId = :kinopoiskId")
+    fun deleteMediaEntity(kinopoiskId: Long)
+
 }

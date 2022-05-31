@@ -7,25 +7,21 @@ import ru.mirea.medlib.network.dto.Genre
 class CountryConverter {
 
     @TypeConverter
-    fun fromCountryList(countryList: List<Country>): String {
-        return countryList.joinToString(separator = ";")
-    }
+    fun fromCountryList(countryList: List<Country>): String =
+        countryList.joinToString(";") { it.country }
 
     @TypeConverter
-    fun toCountryList(countryListString: String): List<Country> {
-        return countryListString.split(";").map { it -> Country(it) }
-    }
+    fun toCountryList(countryListString: String): List<Country> =
+        countryListString.split(";").map { Country(it) }
 }
 
 class GenreConverter {
 
     @TypeConverter
-    fun fromCountryList(countryList: List<Genre>): String {
-        return countryList.joinToString(separator = ";")
-    }
+    fun fromGenreList(genreList: List<Genre>): String =
+        genreList.joinToString(";") { it.genre }
 
     @TypeConverter
-    fun toCountryList(countryListString: String): List<Genre> {
-        return countryListString.split(";").map { it -> Genre(it) }
-    }
+    fun toGenreList(genreListString: String): List<Genre> =
+        genreListString.split(";").map { Genre(it) }
 }

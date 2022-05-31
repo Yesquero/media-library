@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import ru.mirea.medlib.network.ResultWrapper
@@ -22,6 +21,10 @@ class AddMediaViewModel @Inject constructor(
         MutableLiveData()
     val detailsDtoResult: LiveData<ResultWrapper<FilmDetailsDto>> = _detailsDtoResult
 
+    private val _addMediaResult: MutableLiveData<ResultWrapper<Unit>> =
+        MutableLiveData()
+    val addMediaResult: LiveData<ResultWrapper<Unit>> = _addMediaResult
+
     fun getMediaDetails(id: Long) {
         viewModelScope.launch {
             mediaLibraryRepository.getDetails(id).collect {
@@ -31,8 +34,10 @@ class AddMediaViewModel @Inject constructor(
     }
 
     fun saveMedia() {
-        viewModelScope.launch(Dispatchers.IO) {
-            _detailsDtoResult.value?.data?.let { mediaLibraryRepository.addMedia(it) }
+        viewModelScope.launch {
+            mediaLibraryRepository.saveMedia(_detailsDtoResult.value!!.data!!).collect {
+                _addMediaResult.value = it
+            }
         }
     }
 }

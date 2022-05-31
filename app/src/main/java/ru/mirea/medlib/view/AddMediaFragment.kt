@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
 import ru.mirea.medlib.R
 import ru.mirea.medlib.databinding.AddMediaFragmentBinding
@@ -33,7 +34,8 @@ class AddMediaFragment : Fragment() {
             inflater, R.layout.add_media_fragment, container, false
         )
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.loadDetailsBar.visibility = View.GONE
+        binding.viewModel = viewModel
+
         binding.saveBtn.visibility = View.GONE
 
         // initialize
@@ -55,17 +57,31 @@ class AddMediaFragment : Fragment() {
         viewModel.detailsDtoResult.observe(viewLifecycleOwner) {
             when (it) {
                 is ResultWrapper.Loading -> {
-                    binding.loadDetailsBar.visibility = View.VISIBLE
                 }
                 is ResultWrapper.Error -> {
                     // TODO: navigate back ?
-                    binding.loadDetailsBar.visibility = View.GONE
                     Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
                 }
                 is ResultWrapper.Success -> {
                     binding.data = it.data
-                    binding.loadDetailsBar.visibility = View.GONE
                     binding.saveBtn.visibility = View.VISIBLE
+                }
+            }
+        }
+
+        viewModel.addMediaResult.observe(viewLifecycleOwner) {
+            when (it) {
+                is ResultWrapper.Loading -> {
+                }
+                is ResultWrapper.Error -> {
+                    // TODO: navigate back ?
+                    Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
+                }
+                is ResultWrapper.Success -> {
+                    // TODO: navigate back ?
+                    Toast.makeText(context, R.string.save_success, Toast.LENGTH_SHORT).show()
+                    binding.saveBtn.visibility = View.VISIBLE
+                    Navigation.findNavController(view).popBackStack()
                 }
             }
         }

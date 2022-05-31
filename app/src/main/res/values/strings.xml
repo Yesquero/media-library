@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Media Library</string>
     <string name="save_media">Сохранить</string>
+    <string name="save_success">Успешно сохранено</string>
+    <string name="searcg_fragment_lable">Поиск медиа</string>
+    <string name="add_media_fragment_label">Добавть медиа</string>
+    <string name="media_list_fragment_label">Каталог</string>
+    <string name="tablayout_speakable">idk lul</string>
 </resources>

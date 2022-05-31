@@ -1,18 +1,15 @@
 package ru.mirea.medlib.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import ru.mirea.medlib.R
 import ru.mirea.medlib.databinding.MediaLibraryFragmentBinding
 import ru.mirea.medlib.repository.MediaLibraryRepository
@@ -32,8 +29,6 @@ class MediaListFragment : Fragment() {
 
     @Inject
     lateinit var adapter: MediaListAdapter
-
-    var adventureTimeId: Long? = 0
 
     private val viewModel: MediaListViewModel by viewModels()
 
@@ -68,18 +63,11 @@ class MediaListFragment : Fragment() {
         }
 
         binding.testBtn.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch {
-                adventureTimeId?.let {
-                    repository.deleteMedia(adventureTimeId!!)
-                }
-            }
+            Toast.makeText(context, "Testing!", Toast.LENGTH_SHORT).show()
         }
 
         viewModel.mediaList.observe(viewLifecycleOwner) { it ->
             adapter.submitList(it)
-            val atItem = it.find { item -> item.nameRu?.contains("Время") ?: false }
-            adventureTimeId = atItem?.kinopoiskId
-            Log.i("MediaListFragment", "Episodes: ${atItem?.episodes?.size}")
         }
 
     }

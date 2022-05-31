@@ -8,16 +8,19 @@
     <fragment
         android:id="@+id/mediaListFragment"
         android:name="ru.mirea.medlib.view.MediaListFragment"
-        android:label="MediaListFragment"
+        android:label="@string/media_list_fragment_label"
         tools:layout="@layout/media_library_fragment">
         <action
             android:id="@+id/action_mediaListFragment_to_searchfragment"
             app:destination="@id/searchfragment" />
+        <action
+            android:id="@+id/action_mediaListFragment_to_pagerParentFragment"
+            app:destination="@id/pagerParentFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchfragment"
         android:name="ru.mirea.medlib.view.SearchFragment"
-        android:label="Searchfragment"
+        android:label="@string/searcg_fragment_lable"
         tools:layout="@layout/search_media_fragment">
         <action
             android:id="@+id/action_searchfragment_to_addMediaFragment"
@@ -29,6 +32,10 @@
     <fragment
         android:id="@+id/addMediaFragment"
         android:name="ru.mirea.medlib.view.AddMediaFragment"
-        android:label="AddMediaFragment"
+        android:label="@string/add_media_fragment_label"
         tools:layout="@layout/add_media_fragment" />
+    <fragment
+        android:id="@+id/pagerParentFragment"
+        android:name="ru.mirea.medlib.view.PagerParentFragment"
+        android:label="PagerParentFragment" />
 </navigation>

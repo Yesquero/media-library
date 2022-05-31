@@ -1,8 +1,11 @@
 package ru.mirea.medlib.domain
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import ru.mirea.medlib.network.dto.Country
 import ru.mirea.medlib.network.dto.Genre
 
+@Parcelize
 data class MediaDetails(
     val kinopoiskId: Long,
     val imdbId: String?,
@@ -31,4 +34,4 @@ data class MediaDetails(
     val serial: Boolean,
     val shortFilm: Boolean,
     val episodes: List<EpisodeDetails>
-)
+) : Parcelable

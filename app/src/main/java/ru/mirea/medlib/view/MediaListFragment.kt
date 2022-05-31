@@ -16,6 +16,7 @@ import kotlinx.coroutines.launch
 import ru.mirea.medlib.R
 import ru.mirea.medlib.databinding.MediaLibraryFragmentBinding
 import ru.mirea.medlib.repository.MediaLibraryRepository
+import ru.mirea.medlib.utility.MedLibConstants
 import ru.mirea.medlib.view.adapter.MediaListAdapter
 import ru.mirea.medlib.viewmodel.MediaListViewModel
 import javax.inject.Inject
@@ -54,6 +55,13 @@ class MediaListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        adapter.clickListener.onItemClick = {
+            val bundle = Bundle()
+            bundle.putParcelable(MedLibConstants.MEDIA_DETAILS_PARCEL_TAG, it)
+            Navigation.findNavController(view)
+                .navigate(R.id.action_mediaListFragment_to_pagerParentFragment, bundle)
+        }
+
         binding.fabAddItem.setOnClickListener {
             Navigation.findNavController(view)
                 .navigate(R.id.action_mediaListFragment_to_searchfragment)
@@ -69,7 +77,7 @@ class MediaListFragment : Fragment() {
 
         viewModel.mediaList.observe(viewLifecycleOwner) { it ->
             adapter.submitList(it)
-            val atItem = it.find { item -> item.nameRu!!.contains("Время") }
+            val atItem = it.find { item -> item.nameRu?.contains("Время") ?: false }
             adventureTimeId = atItem?.kinopoiskId
             Log.i("MediaListFragment", "Episodes: ${atItem?.episodes?.size}")
         }

@@ -37,5 +37,6 @@
     <fragment
         android:id="@+id/pagerParentFragment"
         android:name="ru.mirea.medlib.view.PagerParentFragment"
-        android:label="PagerParentFragment" />
+        tools:layout="@layout/media_pager_fragment"
+        android:label="@string/app_name" />
 </navigation>

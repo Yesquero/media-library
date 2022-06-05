@@ -6,4 +6,7 @@
     <string name="add_media_fragment_label">Добавть медиа</string>
     <string name="media_list_fragment_label">Каталог</string>
     <string name="tablayout_speakable">idk lul</string>
+    <string name="pager_episode_tab">Эпизоды</string>
+    <string name="pager_details_tab">Описание</string>
+    <string name="pager_staff_tab">Состав</string>
 </resources>

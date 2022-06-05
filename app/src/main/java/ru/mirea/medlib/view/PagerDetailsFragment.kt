@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
 import ru.mirea.medlib.R
 import ru.mirea.medlib.databinding.PagerDetailsFragmentBinding
@@ -38,6 +39,15 @@ class PagerDetailsFragment : Fragment() {
         binding.viewModel = sharedViewModel
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.deleteBtn.setOnClickListener {
+            sharedViewModel.delete()
+            Navigation.findNavController(view).popBackStack()
+        }
     }
 
     override fun onDestroy() {

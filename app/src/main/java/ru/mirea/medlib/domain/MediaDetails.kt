@@ -33,5 +33,16 @@ data class MediaDetails(
     val endYear: Long?,
     val serial: Boolean,
     val shortFilm: Boolean,
-    val episodes: List<EpisodeDetails>
-) : Parcelable
+    val episodes: List<EpisodeDetails>,
+    val staffList: List<StaffDetails>
+) : Parcelable {
+    companion object {
+        fun getProducers(data: MediaDetails): String {
+            return data.staffList.filter { it.professionKey == StaffProfession.DIRECTOR }
+                .joinToString(", ",
+                    transform = { staffDetails ->
+                        staffDetails.nameRu ?: staffDetails.nameEn ?: "Lol noname"
+                    })
+        }
+    }
+}

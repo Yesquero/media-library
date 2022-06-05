@@ -53,9 +53,9 @@ class PagerParentFragment : Fragment() {
 
         TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
             when (position) {
-                0 -> tab.text = "Описание"
-                1 -> tab.text = "Состав"
-                2 -> tab.text = "Эпизоды"
+                0 -> tab.text = getString(R.string.pager_details_tab)
+                1 -> tab.text = getString(R.string.pager_staff_tab)
+                2 -> tab.text = getString(R.string.pager_episode_tab)
             }
         }.attach()
     }

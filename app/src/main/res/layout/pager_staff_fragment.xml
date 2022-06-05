@@ -34,7 +34,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:textSize="14sp"
-            android:text="@{viewModel.mediaItem.description ?? `NONE`}"
+            android:text="@{viewModel.mediaItem.Companion.getProducers(viewModel.mediaItem) ?? `NONE`}"
             app:layout_constraintStart_toEndOf="@+id/twProducer"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

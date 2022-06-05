@@ -46,25 +46,47 @@ class MediaLibraryRepository @Inject constructor(
     suspend fun saveMedia(dto: FilmDetailsDto): Flow<ResultWrapper<Unit>> {
         return flow<ResultWrapper<Unit>> {
             emit(ResultWrapper.Loading())
+
+            if (database.mediaLibraryDao.mediaExists(dto.kinopoiskId)) {
+                emit(ResultWrapper.Error("Media already saved!"))
+                return@flow
+            }
+
+            // get staff list
+            val staffResponse = safeApiCall { kinopoiskService.getFilmStaff(dto.kinopoiskId) }
+            if (!staffResponse.isSuccessful()) {
+                emit(ResultWrapper.Error(staffResponse.message!!))
+                return@flow
+            }
+
+            // get episode list if one exists and save
             if (dto.serial) {
-                val response = safeApiCall { kinopoiskService.getSeasonDetails(dto.kinopoiskId) }
-                if (response.isSuccessful()) {
-                    database.mediaLibraryDao.insert(
+                val episodeResponse =
+                    safeApiCall { kinopoiskService.getSeasonDetails(dto.kinopoiskId) }
+                if (episodeResponse.isSuccessful()) {
+                    database.mediaLibraryDao.insertWithEpisode(
                         dto.asDatabaseModel(),
-                        response.data!!.items.allEpisodes().asDatabaseModel()
+                        staffResponse.data!!.asDatabaseModel(),
+                        episodeResponse.data!!.items.allEpisodes().asDatabaseModel()
                     )
                     emit(ResultWrapper.Success(Unit))
+                    return@flow
                 } else {
-                    emit(ResultWrapper.Error(response.message!!))
+                    emit(ResultWrapper.Error(episodeResponse.message!!))
+                    return@flow
                 }
-            } else {
-                database.mediaLibraryDao.insert(dto.asDatabaseModel())
-                emit(ResultWrapper.Success(Unit))
             }
+
+            // save if no episodes
+            database.mediaLibraryDao.insert(
+                dto.asDatabaseModel(),
+                staffResponse.data!!.asDatabaseModel()
+            )
+            emit(ResultWrapper.Success(Unit))
         }.flowOn(Dispatchers.IO)
     }
 
-    fun deleteMedia(id: Long) {
-        database.mediaLibraryDao.deleteMediaEntity(id)
+    fun deleteMedia(mediaDetails: MediaDetails) {
+        database.mediaLibraryDao.deleteMediaFull(mediaDetails)
     }
 }

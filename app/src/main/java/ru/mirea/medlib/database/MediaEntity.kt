@@ -1,9 +1,6 @@
 package ru.mirea.medlib.database
 
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import androidx.room.Relation
+import androidx.room.*
 import ru.mirea.medlib.domain.FilmCategory
 import ru.mirea.medlib.domain.MediaDetails
 import ru.mirea.medlib.network.dto.Country
@@ -40,18 +37,26 @@ data class MediaEntity(
     val shortFilm: Boolean,
 )
 
-data class MediaEntityWithEpisode(
+data class MediaEntityFull(
     @Embedded val mediaEntity: MediaEntity,
+
     @Relation(
         parentColumn = "kinopoiskId",
         entityColumn = "film_id"
     )
-    val episodes: List<Episode>
+    val episodes: List<Episode>,
+
+    @Relation(
+        parentColumn = "kinopoiskId",
+        entityColumn = "internalId",
+        associateBy = Junction(MediaStaffCrossRef::class)
+    )
+    val staffList: List<StaffEntity>
 )
 
-fun List<MediaEntityWithEpisode>.asDomainModel() = map { it.asDomainModel() }
+fun List<MediaEntityFull>.asDomainModel() = map { it.asDomainModel() }
 
-fun MediaEntityWithEpisode.asDomainModel(): MediaDetails {
+fun MediaEntityFull.asDomainModel(): MediaDetails {
     return MediaDetails(
         kinopoiskId = mediaEntity.kinopoiskId,
         imdbId = mediaEntity.imdbId,
@@ -79,6 +84,7 @@ fun MediaEntityWithEpisode.asDomainModel(): MediaDetails {
         endYear = mediaEntity.endYear,
         serial = mediaEntity.serial,
         shortFilm = mediaEntity.shortFilm,
-        episodes = episodes.asDomainModel()
+        episodes = episodes.asDomainModel(),
+        staffList = staffList.asDomainModel()
     )
 }

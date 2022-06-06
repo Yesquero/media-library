@@ -27,13 +27,13 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mediaList"
-            android:name="ru.mirea.sipirecipes.RecipeShortFragment"
+            android:name="ru.mirea.medlib.view.MediaListFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             app:layoutManager="LinearLayoutManager"
-            tools:context=".ui.view.RecipeListFragment"
+            tools:context=".view.MediaListFragment"
             tools:listitem="@layout/media_item" />
 
         <Button

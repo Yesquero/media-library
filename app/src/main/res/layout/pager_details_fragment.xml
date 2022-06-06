@@ -80,6 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="3dp"
+            android:numStars="10"
             android:rating="@{viewModel.mediaItem.ratingKinopoisk}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/twShortDescription" />

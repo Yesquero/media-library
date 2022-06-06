@@ -14,6 +14,7 @@ import javax.inject.Inject
 @FragmentScoped
 class MediaListAdapter @Inject constructor(val clickListener: ClickListener) :
     ListAdapter<MediaDetails, MediaListAdapter.ViewHolder>(RecipeListDiffCallback()) {
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int

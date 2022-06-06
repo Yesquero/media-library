@@ -23,4 +23,6 @@
     <string name="genres">Жанр:</string>
     <string name="countries">Страна:</string>
     <string name="duration">Время:</string>
+    <string name="seasonNum">Сезон %s</string>
+    <string name="episodeNum">Эпизод %s</string>
 </resources>

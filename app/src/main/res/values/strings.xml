@@ -7,6 +7,8 @@
     <string name="media_list_fragment_label">Каталог</string>
     <string name="tablayout_speakable">idk lul</string>
     <string name="pager_episode_tab">Эпизоды</string>
-    <string name="pager_details_tab">Описание</string>
+    <string name="pager_details_tab">Общая информация</string>
     <string name="pager_staff_tab">Состав</string>
+    <string name="director_s">Режиссер(ы):</string>
+    <string name="description_full">Описание</string>
 </resources>

@@ -47,6 +47,7 @@ class MediaLibraryRepository @Inject constructor(
         return flow<ResultWrapper<Unit>> {
             emit(ResultWrapper.Loading())
 
+            // if media already exists return error
             if (database.mediaLibraryDao.mediaExists(dto.kinopoiskId)) {
                 emit(ResultWrapper.Error("Media already saved!"))
                 return@flow

@@ -37,7 +37,7 @@ data class MediaDetails(
     val staffList: List<StaffDetails>
 ) : Parcelable {
     companion object {
-        fun getProducers(data: MediaDetails): String {
+        fun getDirectors(data: MediaDetails): String {
             return data.staffList.filter { it.professionKey == StaffProfession.DIRECTOR }
                 .joinToString(", ",
                     transform = { staffDetails ->

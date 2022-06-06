@@ -1,4 +1,4 @@
-package ru.mirea.medlib.view
+package ru.mirea.medlib.view.pagerTabs
 
 import android.os.Bundle
 import android.view.LayoutInflater

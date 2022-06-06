@@ -1,4 +1,4 @@
-package ru.mirea.medlib.view
+package ru.mirea.medlib.view.pagerTabs
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,23 +7,22 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
 import ru.mirea.medlib.R
-import ru.mirea.medlib.databinding.PagerDetailsFragmentBinding
+import ru.mirea.medlib.databinding.PagerEpisodesFragmentBinding
 import ru.mirea.medlib.viewmodel.PagerViewModel
 
 @AndroidEntryPoint
-class PagerDetailsFragment : Fragment() {
+class PagerEpisodesFragment : Fragment() {
 
     private val sharedViewModel by viewModels<PagerViewModel>({ requireParentFragment() })
 
-    private var _binding: PagerDetailsFragmentBinding? = null
+    private var _binding: PagerEpisodesFragmentBinding? = null
     val binding get() = _binding!!
 
     companion object {
-        fun create(): PagerDetailsFragment {
-            return PagerDetailsFragment()
+        fun create(): PagerEpisodesFragment {
+            return PagerEpisodesFragment()
         }
     }
 
@@ -33,21 +32,12 @@ class PagerDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = DataBindingUtil.inflate(
-            inflater, R.layout.pager_details_fragment, container, false
+            inflater, R.layout.pager_episodes_fragment, container, false
         )
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = sharedViewModel
 
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.deleteBtn.setOnClickListener {
-            sharedViewModel.delete()
-            Navigation.findNavController(view).popBackStack()
-        }
     }
 
     override fun onDestroy() {

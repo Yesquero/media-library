@@ -13,21 +13,34 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.PagerDetailsFragment">
+        tools:context=".view.pagerTabs.PagerDetailsFragment">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/details_header"
+            app:layout_constraintBottom_toTopOf="@id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imagePoster"
             imageUrl="@{viewModel.mediaItem.posterUrl}"
-            android:layout_width="0dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
+            app:layout_constraintBottom_toTopOf="@id/guideline2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/twTitle"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
             android:id="@+id/twTitle"
@@ -35,9 +48,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
+            android:layout_marginEnd="3dp"
             android:text="@{viewModel.mediaItem.nameRu ?? viewModel.mediaItem.nameEn ?? viewModel.mediaItem.nameOriginal}"
-            android:textSize="16sp"
-            android:textStyle="bold"
+            style="@style/text_header"
+            app:layout_constraintEnd_toStartOf="@+id/imagePoster"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@tools:sample/full_names" />
@@ -46,24 +60,73 @@
             android:id="@+id/twShortDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="3dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
-            android:text="@{viewModel.mediaItem.shortDescription ?? `NONE`}"
+            android:maxHeight="105dp"
+            android:text="@{viewModel.mediaItem.shortDescription ?? `Нет краткого описания`}"
+            android:textColor="#263238"
             app:layout_constraintEnd_toStartOf="@+id/imagePoster"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/twTitle"
-            tools:text="@tools:sample/lorem" />
+            tools:text="@tools:sample/lorem/random" />
 
-        <Button
-            android:id="@+id/deleteBtn"
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="?android:ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="DELET"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="3dp"
+            android:rating="@{viewModel.mediaItem.ratingKinopoisk}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/twShortDescription" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="163dp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            style="@style/text_header"
+            android:text="@string/description_full"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline2" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="5dp"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_max="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/twDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.mediaItem.description ?? `Нет описания`}"
+                    tools:text="@tools:sample/lorem/random" />
+
+            </ScrollView>
+
+        </androidx.cardview.widget.CardView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

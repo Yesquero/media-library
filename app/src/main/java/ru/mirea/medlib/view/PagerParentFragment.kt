@@ -13,6 +13,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import ru.mirea.medlib.R
 import ru.mirea.medlib.databinding.MediaPagerFragmentBinding
 import ru.mirea.medlib.utility.MedLibConstants
+import ru.mirea.medlib.view.pagerTabs.PagerDetailsFragment
+import ru.mirea.medlib.view.pagerTabs.PagerEpisodesFragment
+import ru.mirea.medlib.view.pagerTabs.PagerStaffFragment
 import ru.mirea.medlib.viewmodel.PagerViewModel
 
 @AndroidEntryPoint

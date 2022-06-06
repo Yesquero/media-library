@@ -25,4 +25,8 @@
     <string name="duration">Время:</string>
     <string name="seasonNum">Сезон %s</string>
     <string name="episodeNum">Эпизод %s</string>
+    <string name="synopsis">Синопсис: </string>
+    <string name="missing_name">Имя не доступно</string>
+    <string name="missing_info">Отсутствует</string>
+    <string name="missing_synopsis">Нет краткого описания</string>
 </resources>

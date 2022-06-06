@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="ru.mirea.medlib.utility.Formatters" />
+
         <variable
             name="viewModel"
             type="ru.mirea.medlib.viewmodel.PagerViewModel" />
@@ -90,23 +92,115 @@
             app:layout_constraintGuide_begin="163dp" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textView5"
+            style="@style/text_subHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
-            style="@style/text_header"
+            android:layout_marginTop="8dp"
+            android:text="@string/release_year"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guideline2" />
+
+        <TextView
+            android:id="@+id/twYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="8dp"
+            android:text="@{viewModel.mediaItem.year + ``}"
+            app:layout_constraintStart_toEndOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/guideline2"
+            tools:text="@tools:sample/date/ddmmyy" />
+
+        <TextView
+            android:id="@+id/textView6"
+            style="@style/text_subHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/genres"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/twYear" />
+
+        <TextView
+            android:id="@+id/twGenres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="3dp"
+            android:text="@{Formatters.INSTANCE.formattedGenres(viewModel.mediaItem.genres)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/twYear"
+            tools:text="@tools:sample/lorem" />
+
+        <TextView
+            android:id="@+id/textView7"
+            style="@style/text_subHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/countries"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/twGenres" />
+
+        <TextView
+            android:id="@+id/twCountries"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="3dp"
+            android:text="@{Formatters.INSTANCE.formatCountries(viewModel.mediaItem.countries)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView7"
+            app:layout_constraintTop_toBottomOf="@+id/twGenres"
+            tools:text="@tools:sample/lorem" />
+
+        <TextView
+            android:id="@+id/textView8"
+            style="@style/text_subHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/duration"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/twCountries" />
+
+        <TextView
+            android:id="@+id/twDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="@{viewModel.mediaItem.filmLength + ` мин.`}"
+            app:layout_constraintStart_toEndOf="@+id/textView8"
+            app:layout_constraintTop_toBottomOf="@+id/twCountries"
+            tools:text="@tools:sample/lorem" />
+
+        <TextView
+            android:id="@+id/textView4"
+            style="@style/text_subHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
             android:text="@string/description_full"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/guideline2" />
+            app:layout_constraintTop_toBottomOf="@id/twDuration" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="3dp"
             app:layout_constrainedHeight="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_max="100dp"

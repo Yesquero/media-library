@@ -9,6 +9,18 @@
     <string name="pager_episode_tab">Эпизоды</string>
     <string name="pager_details_tab">Общая информация</string>
     <string name="pager_staff_tab">Состав</string>
-    <string name="director_s">Режиссер(ы):</string>
+    <string name="director_s">Режиссер:</string>
+    <string name="writer">Сценарист:</string>
+    <string name="actor">Актеры</string>
+    <string name="voice_actor">Актеры озвучки</string>
+    <string name="producer">Продюсер</string>
+    <string name="editor">Монтаж</string>
+    <string name="operator">Оператор</string>
+    <string name="design">Дизайн</string>
+    <string name="composer">Композитор</string>
     <string name="description_full">Описание</string>
+    <string name="release_year">Год производства:</string>
+    <string name="genres">Жанр:</string>
+    <string name="countries">Страна:</string>
+    <string name="duration">Время:</string>
 </resources>

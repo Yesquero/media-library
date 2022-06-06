@@ -6,9 +6,7 @@ import android.widget.RatingBar
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import ru.mirea.medlib.R
 
 @BindingAdapter("imageUrl")
 fun loadImage(view: ImageView, url: String?) {

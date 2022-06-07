@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
 import ru.mirea.medlib.R
 import ru.mirea.medlib.databinding.MediaLibraryFragmentBinding
+import ru.mirea.medlib.domain.MediaDetails
 import ru.mirea.medlib.repository.MediaLibraryRepository
 import ru.mirea.medlib.utility.MedLibConstants
 import ru.mirea.medlib.view.adapter.MediaListAdapter
@@ -44,6 +46,10 @@ class MediaListFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.mediaList.adapter = adapter
 
+        binding.mediaSearch.isIconified = false
+
+        setSearchHandler()
+
         return binding.root
     }
 
@@ -67,10 +73,26 @@ class MediaListFragment : Fragment() {
         }
 
         viewModel.mediaList.observe(viewLifecycleOwner) { it ->
-            adapter.submitList(it)
+            adapter.setData(it as MutableList<MediaDetails>)
         }
 
     }
+
+    private fun setSearchHandler() {
+        binding.mediaSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                adapter.filter.filter(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.filter.filter(newText)
+                return true
+            }
+
+        })
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()

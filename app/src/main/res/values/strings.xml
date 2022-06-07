@@ -31,4 +31,5 @@
     <string name="missing_synopsis">Нет краткого описания</string>
     <string name="web_details">Посмотреть на сайте</string>
     <string name="delete">Удалить</string>
+    <string name="search_action">Поиск</string>
 </resources>

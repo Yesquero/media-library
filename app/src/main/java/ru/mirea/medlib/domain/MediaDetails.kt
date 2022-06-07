@@ -36,6 +36,13 @@ data class MediaDetails(
     val episodes: List<EpisodeDetails>,
     val staffList: List<StaffDetails>
 ) : Parcelable {
+    fun getFilterString(): String {
+        return nameEn?.lowercase() +
+                nameRu?.lowercase() +
+                nameOriginal?.lowercase() +
+                genres.joinToString { it.genre.lowercase() }
+    }
+
     companion object {
         fun getDirectors(data: MediaDetails): String =
             getStaffHelper(data, StaffProfession.DIRECTOR)

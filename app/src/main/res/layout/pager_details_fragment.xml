@@ -65,7 +65,7 @@
             android:layout_marginStart="3dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
-            android:maxHeight="105dp"
+            android:maxHeight="120dp"
             android:text="@{viewModel.mediaItem.shortDescription ?? `Нет краткого описания`}"
             android:textColor="#263238"
             app:layout_constraintEnd_toStartOf="@+id/imagePoster"
@@ -90,7 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="163dp" />
+            app:layout_constraintGuide_begin="180dp" />
 
         <TextView
             android:id="@+id/textView5"
@@ -115,6 +115,30 @@
             tools:text="@tools:sample/date/ddmmyy" />
 
         <TextView
+            android:id="@+id/textView20"
+            style="@style/text_subHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/director_s"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/twYear" />
+
+        <TextView
+            android:id="@+id/twDirectors"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="3dp"
+            android:text="@{viewModel.mediaItem.Companion.getDirectors(viewModel.mediaItem)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView20"
+            app:layout_constraintTop_toBottomOf="@+id/twYear"
+            tools:text="@tools:sample/lorem" />
+
+        <TextView
             android:id="@+id/textView6"
             style="@style/text_subHeader"
             android:layout_width="wrap_content"
@@ -123,7 +147,7 @@
             android:layout_marginTop="5dp"
             android:text="@string/genres"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/twYear" />
+            app:layout_constraintTop_toBottomOf="@+id/twDirectors" />
 
         <TextView
             android:id="@+id/twGenres"
@@ -135,7 +159,7 @@
             android:text="@{Formatters.INSTANCE.formattedGenres(viewModel.mediaItem.genres)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView6"
-            app:layout_constraintTop_toBottomOf="@+id/twYear"
+            app:layout_constraintTop_toBottomOf="@+id/twDirectors"
             tools:text="@tools:sample/lorem" />
 
         <TextView
@@ -204,7 +228,7 @@
             android:layout_marginEnd="3dp"
             app:layout_constrainedHeight="true"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_max="100dp"
+            app:layout_constraintHeight_max="120dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4">
 
@@ -222,6 +246,32 @@
             </ScrollView>
 
         </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/goToSiteBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:minHeight="35dp"
+            android:text="@string/web_details"
+            android:textAllCaps="false"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+
+        <Button
+            android:id="@+id/deleteBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:minHeight="35dp"
+            android:text="@string/delete"
+            android:textAllCaps="false"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

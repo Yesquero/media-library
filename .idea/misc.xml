@@ -5,7 +5,7 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.38125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18072916666666666" />
-        <entry key="app/src/main/res/layout/add_media_fragment.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/add_media_fragment.xml" value="0.33" />
         <entry key="app/src/main/res/layout/episode_card.xml" value="0.297554347826087" />
         <entry key="app/src/main/res/layout/episode_list_header.xml" value="0.297554347826087" />
         <entry key="app/src/main/res/layout/library_list_fragment.xml" value="0.18072916666666666" />
@@ -14,7 +14,7 @@
         <entry key="app/src/main/res/layout/media_library_fragment.xml" value="0.18072916666666666" />
         <entry key="app/src/main/res/layout/media_pager_fragment.xml" value="0.297554347826087" />
         <entry key="app/src/main/res/layout/media_pager_parent.xml" value="0.297554347826087" />
-        <entry key="app/src/main/res/layout/pager_details_fragment.xml" value="0.297554347826087" />
+        <entry key="app/src/main/res/layout/pager_details_fragment.xml" value="0.33" />
         <entry key="app/src/main/res/layout/pager_episodes_fragment.xml" value="0.297554347826087" />
         <entry key="app/src/main/res/layout/pager_staff_fragment.xml" value="0.297554347826087" />
         <entry key="app/src/main/res/layout/search_item.xml" value="0.297554347826087" />

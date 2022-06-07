@@ -1,5 +1,7 @@
 package ru.mirea.medlib.view
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -66,6 +68,15 @@ class AddMediaFragment : Fragment() {
                     binding.data = it.data
                     binding.saveBtn.visibility = View.VISIBLE
                 }
+            }
+        }
+
+        binding.goToWebBtn.setOnClickListener {
+            viewModel.detailsDtoResult.value?.let {
+                val webUrl = viewModel.detailsDtoResult.value!!.data!!.webUrl
+                val webIntent = Intent(Intent.ACTION_VIEW)
+                webIntent.data = Uri.parse(webUrl)
+                startActivity(webIntent)
             }
         }
 

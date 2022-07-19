@@ -75,7 +75,7 @@ class MediaListAdapter @Inject constructor(val clickListener: ClickListener) :
     private val customFilter = object : Filter() {
         override fun performFiltering(constraint: CharSequence?): FilterResults {
             val filteredList = mutableListOf<MediaDetails>()
-            if (constraint == null || constraint.isEmpty()) {
+            if (constraint.isNullOrEmpty()) {
                 filteredList.addAll(localList)
             } else {
                 for (item in localList) {
